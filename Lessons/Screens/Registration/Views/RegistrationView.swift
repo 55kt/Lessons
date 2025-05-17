@@ -50,16 +50,16 @@ struct RegistrationView: View {
                 Spacer()
                 
                 CustomButton(buttonName: "Register") {
+                    let result = validator.validate(name: userName, surname: userSurName)
+                    alertMessage = result.message
                     isAlertPresented = true
-                    validator.validation(userName)
-                    
                 }
                 
             }// VStack
         }// ZStack
         
         // MARK: - Alerts
-        .alert("Ошибка", isPresented: $isAlertPresented) {
+        .alert("Результат", isPresented: $isAlertPresented) {
             Button("Ok") { isAlertPresented = false}
         } message: {
             Text(alertMessage)

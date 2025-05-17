@@ -11,7 +11,7 @@ struct CustomTextFieldView: View {
     // MARK: - Properties
     var textFieldTitle: String
     var internalText: String
-    @State var inputText: Binding<String?>
+    var inputText: Binding<String?>
     
     // MARK: - Body
     var body: some View {

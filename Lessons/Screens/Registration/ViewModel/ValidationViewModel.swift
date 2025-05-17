@@ -10,22 +10,33 @@ import Foundation
 struct ValidationViewModel {
     
     // MARK: - Methods
-    func validation(_ text: String?) -> ValidationError {
-        guard let text = text else {
-            return ValidationError.empty
-        }
+    func validate(name: String?, surname: String?) -> ValidationError {
         
-        return ValidationError.empty
+        guard let name = name else { return ValidationError.empty }
+        guard name.count > 2 else { return ValidationError.tooShort }
+        guard CharacterSet(charactersIn: name).isSubset(of: .letters) else { return ValidationError.invalidCharacters }
+        
+        guard let surname = surname else { return ValidationError.empty }
+        guard surname.count > 2 else { return ValidationError.tooShort }
+        guard CharacterSet(charactersIn: surname).isSubset(of: .letters) else { return ValidationError.invalidCharacters }
+        
+        return ValidationError.success(name: name, surname: surname)
     }
     
     // MARK: - Error Enum
     enum ValidationError: Error {
-        case empty
+        case empty, tooShort, invalidCharacters, success(name: String, surname: String)
         
         var message: String {
             switch self {
             case .empty:
-                return "Ошибка. Поле не может быть пустым !"
+                return "Поле не может быть пустым. Пожалуйста введите текст"
+            case .tooShort:
+                return "Длина текста должна превышать более 4 символов"
+            case .invalidCharacters:
+                return "В тексте должны присутствовать только буквы"
+            case .success(let name, let surname):
+                return "Регистрация прошла успешно для пользователя \(name) \(surname)"
             }
         }
     }
