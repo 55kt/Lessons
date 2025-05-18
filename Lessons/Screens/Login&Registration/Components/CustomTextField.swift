@@ -1,26 +1,27 @@
 //
-//  CustomTextFieldView.swift
+//  CustomTextField.swift
 //  Lessons
 //
-//  Created by Vlad on 16/5/25.
+//  Created by Vlad on 17/5/25.
 //
 
 import SwiftUI
 
-struct CustomTextFieldView: View {
+struct CustomTextField: View {
     // MARK: - Properties
-    var textFieldTitle: String
-    var internalText: String
+    var textFieldName: String
+    var interiorText: String
     var inputText: Binding<String?>
     
     // MARK: - Body
     var body: some View {
         VStack(spacing: -10) {
-            Text(textFieldTitle)
+            Text(textFieldName)
                 .font(.subheadline)
                 .bold()
                 .padding(.horizontal, -160)
                 .foregroundStyle(.white)
+            
             
             ZStack {
                 Rectangle()
@@ -28,12 +29,15 @@ struct CustomTextFieldView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .foregroundStyle(.white.opacity(0.6))
                 
-                TextField(internalText, text: Binding(
+                TextField(interiorText, text: Binding(
                     get: { inputText.wrappedValue ?? "" },
                     set: { newValue in
                         inputText.wrappedValue = newValue.isEmpty ? nil : newValue
                     }))
-                    .padding(.horizontal)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+                .submitLabel(.done)
+                .padding(.horizontal)
             }// ZStack
             .padding()
         }// VStack
@@ -42,5 +46,5 @@ struct CustomTextFieldView: View {
 
 // MARK: - Preview
 #Preview {
-    CustomTextFieldView(textFieldTitle: "Title", internalText: "Enter your internal text here...", inputText: .constant(""))
+    CustomTextField(textFieldName: "textFieldName", interiorText: "interiorText", inputText: .constant(""))
 }

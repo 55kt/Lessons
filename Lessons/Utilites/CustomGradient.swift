@@ -1,8 +1,8 @@
 //
-//  customGradient.swift
+//  CustomGradient.swift
 //  Lessons
 //
-//  Created by Vlad on 16/5/25.
+//  Created by Vlad on 17/5/25.
 //
 
 import SwiftUI
