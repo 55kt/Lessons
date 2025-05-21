@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2CC0002DDE2A0900E6B226 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CBFFF2DDE2A0900E6B226 /* RegistrationView.swift */; };
 		4B9B79162DD8DB8F005BCDB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B79152DD8DB8F005BCDB5 /* LoginView.swift */; };
 		4B9B79182DD8DD48005BCDB5 /* CustomGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B79172DD8DD48005BCDB5 /* CustomGradient.swift */; };
 		4B9B791A2DD8DE9F005BCDB5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B79192DD8DE9F005BCDB5 /* CustomTextField.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2CBFFF2DDE2A0900E6B226 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		4B9B79152DD8DB8F005BCDB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4B9B79172DD8DD48005BCDB5 /* CustomGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradient.swift; sourceTree = "<group>"; };
 		4B9B79192DD8DE9F005BCDB5 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9B79152DD8DB8F005BCDB5 /* LoginView.swift */,
+				4B2CBFFF2DDE2A0900E6B226 /* RegistrationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				4BB097F22DD78C230055B4FA /* MainView.swift in Sources */,
 				4BB097F32DD78C230055B4FA /* LessonsApp.swift in Sources */,
 				4B9B791A2DD8DE9F005BCDB5 /* CustomTextField.swift in Sources */,
+				4B2CC0002DDE2A0900E6B226 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

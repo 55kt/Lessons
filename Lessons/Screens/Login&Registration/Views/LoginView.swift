@@ -16,6 +16,9 @@ struct LoginView: View {
     @State private var isShowingAlert: Bool = false
     @State private var alertMessage: String = ""
     
+    @State private var isShowingSheet: Bool = false
+    @Environment(\.dismiss) private var dismiss
+    
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -48,7 +51,7 @@ struct LoginView: View {
                 CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
                 
                 CustomButton(buttonName: "Войти", action: {
-                    let result = validator.validation(email: userEmail, password: userPassword)
+                    let result = validator.validation(nickName: "", email: userEmail, password: userPassword)
                     alertMessage = result.message
                     isShowingAlert = true
                 })
@@ -56,9 +59,12 @@ struct LoginView: View {
                 Spacer()
                 
                 Button("У вас нет действующего аккаунта ? \n Создать аккаунт") {
-                    // action
+                    isShowingSheet.toggle()
                 }
                 .foregroundStyle(.white)
+                .sheet(isPresented: $isShowingSheet) {
+                    RegistrationView()
+                }// sheet
             }// VStack
         }// ZStack
         

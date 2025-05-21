@@ -10,7 +10,7 @@ import Foundation
 struct ValidationViewModel {
     
     // MARK: - Email Validation
-    public func validation(email: String?, password: String?) -> ValidationError {
+    public func validation(nickName: String?, email: String?, password: String?) -> ValidationError {
         
         /// Validates email and password for login or registration.
         /// - Parameters:
@@ -19,6 +19,7 @@ struct ValidationViewModel {
         /// - Returns: A `ValidationError` indicating the result.
         
         // Проверка пустоты
+        guard let nickName = nickName, !nickName.isEmpty else { return ValidationError.emptyNickName }
         guard let email = email, !email.isEmpty else { return ValidationError.emptyEmail }
         guard let password = password, !password.isEmpty else { return ValidationError.emptyPassword }
 
@@ -63,6 +64,6 @@ struct ValidationViewModel {
             return ValidationError.missingPasswordSpecial
         }
 
-        return ValidationError.success(email: email, password: password)
+        return ValidationError.success(email: email, password: password, nickName: nickName)
     }
 }

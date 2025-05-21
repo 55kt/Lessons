@@ -8,21 +8,24 @@
 import Foundation
 
 enum ValidationError: Error {
+    case emptyNickName
     case emptyEmail
-        case emptyPassword
-        case tooManyEmailCharacters
-        case tooLongEmailLocalPart
-        case invalidEmail
-        case tooShortPassword
-        case tooLongPassword
-        case missingPasswordLetter
-        case missingPasswordDigit
-        case missingPasswordSpecial
-        case invalidPasswordCharacters
-        case success(email: String, password: String)
+    case emptyPassword
+    case tooManyEmailCharacters
+    case tooLongEmailLocalPart
+    case invalidEmail
+    case tooShortPassword
+    case tooLongPassword
+    case missingPasswordLetter
+    case missingPasswordDigit
+    case missingPasswordSpecial
+    case invalidPasswordCharacters
+    case success(email: String, password: String, nickName: String)
     
     var message: String {
         switch self {
+        case .emptyNickName:
+            return NSLocalizedString("Пожалуйста, введите ваш никнейм", comment: "Ошибка пустого никнейма")
         case .emptyEmail:
             return NSLocalizedString("Пожалуйста, введите email", comment: "Ошибка пустого email")
         case .emptyPassword:
@@ -45,8 +48,9 @@ enum ValidationError: Error {
             return NSLocalizedString("Пароль должен содержать хотя бы один специальный символ (например, !@#$)", comment: "Ошибка отсутствия специального символа")
         case .invalidPasswordCharacters:
             return NSLocalizedString("Пароль не должен содержать пробелы или недопустимые символы", comment: "Ошибка недопустимых символов в пароле")
-        case .success(let email, _):
+        case .success(let email, let nickName, _):
             return NSLocalizedString("Вход успешен для \(email)", comment: "Сообщение об успешном входе")
+            
         }
     }
 }
