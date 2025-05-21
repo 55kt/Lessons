@@ -12,10 +12,11 @@ struct ValidationViewModel {
     // MARK: - Email Validation
     public func validation(nickName: String?, email: String?, password: String?) -> ValidationError {
         
-        /// Validates email and password for login or registration.
+        /// Validates email, password and nickName for login or registration.
         /// - Parameters:
         ///   - email: The email address to validate.
         ///   - password: The password to validate.
+        ///   - nickName: The nickName to validate.
         /// - Returns: A `ValidationError` indicating the result.
         
         // Проверка пустоты
@@ -24,16 +25,24 @@ struct ValidationViewModel {
         guard let password = password, !password.isEmpty else { return ValidationError.emptyPassword }
 
         // Проверка пробелов
+        guard !nickName.contains(" ") else { return ValidationError.invalidNickNameCharacters }
         guard !email.contains(" ") else { return ValidationError.invalidEmail }
         guard !password.contains(" ") else { return ValidationError.invalidPasswordCharacters }
         
         // Проверка Unicode
+        guard nickName.unicodeScalars.allSatisfy({ $0.isASCII }) else {
+            return ValidationError.invalidNickNameCharacters
+        }
         guard email.unicodeScalars.allSatisfy({ $0.isASCII }) else {
             return ValidationError.invalidEmail
         }
         guard password.unicodeScalars.allSatisfy({ $0.isASCII }) else {
             return ValidationError.invalidPasswordCharacters
         }
+        
+        // Проверка длины nickname
+        guard nickName.count >= 1 else { return ValidationError.tooShortNickName }
+        guard nickName.count <= 20 else { return ValidationError.tooLongNickName }
 
         // Проверка длины email
         guard email.count <= 254 else { return ValidationError.tooManyEmailCharacters }
@@ -64,6 +73,6 @@ struct ValidationViewModel {
             return ValidationError.missingPasswordSpecial
         }
 
-        return ValidationError.success(email: email, password: password, nickName: nickName)
+        return ValidationError.success(nickName: nickName, email: email, password: password)
     }
 }
