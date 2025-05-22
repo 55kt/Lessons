@@ -27,7 +27,7 @@ struct CustomTextField: View {
                 Rectangle()
                     .frame(height: 60)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(.white.opacity(0.8))
                 
                 TextField(interiorText, text: Binding(
                     get: { inputText.wrappedValue ?? "" },

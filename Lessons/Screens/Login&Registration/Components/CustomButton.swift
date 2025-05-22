@@ -21,7 +21,7 @@ struct CustomButton: View {
                 Rectangle()
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .frame(width: 300, height: 60)
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(.white.opacity(0.6))
                 .padding()
                 
                 Text(buttonName)
@@ -36,4 +36,5 @@ struct CustomButton: View {
 // MARK: - Preview
 #Preview {
     CustomButton(buttonName: "buttonName") {}
+        .background(customGradient(.blue, .purple))
 }

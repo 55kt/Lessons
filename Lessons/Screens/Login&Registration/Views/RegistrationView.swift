@@ -30,34 +30,36 @@ struct RegistrationView: View {
                     .frame(width: 350, height: 350)
                     .opacity(0.2)
                 
-                VStack {
-                    
-                    Text("Регистрация")
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        .foregroundStyle(.white)
-                        .shadow(color: .white, radius: 0.8)
-                        .padding(.top)
-                    
-                    Spacer()
-                    
-                    CustomTextField(textFieldName: "Никнейм", interiorText: "Введите ваш никнейм...", inputText: $userNickName)
-                    
-                    CustomTextField(textFieldName: "Email", interiorText: "Введите ваш email адрес...", inputText: $userEmail)
-                        .keyboardType(.emailAddress)
-                        .textContentType(.emailAddress)
-                    
-                    CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
-                    
-                    CustomButton(buttonName: "Зарегистрироваться") {
-                        let result = validator.validation(nickName: userNickName, email: userEmail, password: userPassword)
-                        alertMessage = result.message
-                        isShowingAlert.toggle()
-                    }
-                    
-                    Spacer()
-                    
-                }// VStack
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        
+                        Text("Регистрация")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                            .foregroundStyle(.white)
+                            .shadow(color: .white, radius: 0.8)
+                            .padding(.top)
+                        
+                        Spacer()
+                        
+                        CustomTextField(textFieldName: "Никнейм", interiorText: "Введите ваш никнейм...", inputText: $userNickName)
+                        
+                        CustomTextField(textFieldName: "Email", interiorText: "Введите ваш email адрес...", inputText: $userEmail)
+                            .keyboardType(.emailAddress)
+                            .textContentType(.emailAddress)
+                        
+                        CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
+                        
+                        CustomButton(buttonName: "Зарегистрироваться") {
+                            let result = validator.validation(nickName: userNickName, email: userEmail, password: userPassword)
+                            alertMessage = result.message
+                            isShowingAlert.toggle()
+                        }
+                        
+                        Spacer()
+                        
+                    }// VStack
+                }// ScrollView
                 
             }// ZStack
             .toolbar {

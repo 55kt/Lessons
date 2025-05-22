@@ -21,60 +21,61 @@ struct LoginView: View {
     
     // MARK: - Body
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             customGradient(.pink, .blue)
             
-            /// TextFields Area
-            VStack {
-                /// Header Area
+            ScrollView(.vertical, showsIndicators: false) {
+                /// TextFields Area
                 VStack {
-                    Text("OceanScript")
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        .foregroundStyle(.white)
-                        .shadow(color: .white, radius: 0.8)
-                        .padding(.top)
+                    /// Header Area
+                    VStack {
+                        Text("OceanScript")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                            .foregroundStyle(.white)
+                            .shadow(color: .white, radius: 0.8)
+                            .padding(.top)
+                        
+                        Image("waveIcon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity, maxHeight: 180)
+                    }// VStack
                     
-                    Image("waveIcon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200)
+                    Spacer()
+                    
+                    CustomTextField(textFieldName: "Email", interiorText: "Введите ваш email адрес...", inputText: $userEmail)
+                        .keyboardType(.emailAddress)
+                        .textContentType(.emailAddress)
+                    
+                    CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
+                    
+                    CustomButton(buttonName: "Войти", action: {
+                        let result = validator.validation(nickName: "", email: userEmail, password: userPassword)
+                        alertMessage = result.message
+                        isShowingAlert = true
+                    })
+                    
+                    Spacer()
+                    
+                    Button("У вас нет действующего аккаунта ? \n Создать аккаунт") {
+                        isShowingSheet.toggle()
+                    }
+                    .padding()
+                    .foregroundStyle(.white)
+                    .sheet(isPresented: $isShowingSheet) {
+                        RegistrationView()
+                    }// sheet
                 }// VStack
-                .padding(.bottom, -100)
-                
-                Spacer()
-                
-                CustomTextField(textFieldName: "Email", interiorText: "Введите ваш email адрес...", inputText: $userEmail)
-                    .keyboardType(.emailAddress)
-                    .textContentType(.emailAddress)
-                
-                CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
-                
-                CustomButton(buttonName: "Войти", action: {
-                    let result = validator.validation(nickName: "", email: userEmail, password: userPassword)
-                    alertMessage = result.message
-                    isShowingAlert = true
-                })
-                
-                Spacer()
-                
-                Button("У вас нет действующего аккаунта ? \n Создать аккаунт") {
-                    isShowingSheet.toggle()
-                }
-                .foregroundStyle(.white)
-                .sheet(isPresented: $isShowingSheet) {
-                    RegistrationView()
-                }// sheet
-            }// VStack
+            }// ScrollView
+            .scrollDismissesKeyboard(.immediately)
+            // MARK: - Alerts
+            .alert("Результат ввода", isPresented: $isShowingAlert) {
+                Button("Принять") { isShowingAlert = false }
+            } message: {
+                Text(alertMessage)
+            }
         }// ZStack
-        
-        // MARK: - Alerts
-        .alert("Результат ввода", isPresented: $isShowingAlert) {
-            Button("Принять") { isShowingAlert = false }
-        } message: {
-            Text(alertMessage)
-        }
-        
     }// View
 }// Body
 
