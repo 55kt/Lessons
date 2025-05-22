@@ -51,7 +51,7 @@ struct RegistrationView: View {
                         CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
                         
                         CustomButton(buttonName: "Зарегистрироваться") {
-                            let result = validator.validation(nickName: userNickName, email: userEmail, password: userPassword)
+                            let result = validator.validateRegistration(nickName: userNickName, email: userEmail, password: userPassword)
                             alertMessage = result.message
                             isShowingAlert.toggle()
                         }

@@ -23,7 +23,8 @@ enum ValidationError: Error {
     case missingPasswordDigit
     case missingPasswordSpecial
     case invalidPasswordCharacters
-    case success(nickName: String, email: String, password: String)
+    case sucessLogin(nickName: String, password: String)
+    case successRegistration(nickName: String, email: String, password: String)
     
     var message: String {
         switch self {
@@ -57,8 +58,10 @@ enum ValidationError: Error {
             return NSLocalizedString("Пароль должен содержать хотя бы один специальный символ (например, !@#$)", comment: "Ошибка отсутствия специального символа")
         case .invalidPasswordCharacters:
             return NSLocalizedString("Пароль не должен содержать пробелы или недопустимые символы", comment: "Ошибка недопустимых символов в пароле")
-        case .success(let nickName, let email, _):
-            return NSLocalizedString("Регистрация успешна для \(nickName) (\(email))", comment: "Сообщение об успешной регистрации")
+        case .sucessLogin(let nickName, _):
+            return NSLocalizedString("Вход выполнени для пользователя \(nickName)", comment: "Сообщение об успешном Login")
+        case .successRegistration(let nickName, let email, _):
+            return NSLocalizedString("Регистрация успешна для пользователя \(nickName) с адресом \(email)", comment: "Сообщение об успешной регистрации")
         }
     }
 }

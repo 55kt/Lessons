@@ -11,7 +11,7 @@ struct LoginView: View {
     // MARK: - Properties
     private let validator = ValidationViewModel()
     
-    @State private var userEmail: String?
+    @State private var userNickName: String?
     @State private var userPassword: String?
     @State private var isShowingAlert: Bool = false
     @State private var alertMessage: String = ""
@@ -44,14 +44,14 @@ struct LoginView: View {
                     
                     Spacer()
                     
-                    CustomTextField(textFieldName: "Email", interiorText: "Введите ваш email адрес...", inputText: $userEmail)
+                    CustomTextField(textFieldName: "Никнейм", interiorText: "Введите ваш никнейм...", inputText: $userNickName)
                         .keyboardType(.emailAddress)
                         .textContentType(.emailAddress)
                     
                     CustomSecureField(secureFieldName: "Пароль", interiorText: "Введите ваш пароль...", inputText: $userPassword)
                     
                     CustomButton(buttonName: "Войти", action: {
-                        let result = validator.validation(nickName: "", email: userEmail, password: userPassword)
+                        let result = validator.validateLogin(nickName: userNickName, password: userPassword)
                         alertMessage = result.message
                         isShowingAlert = true
                     })
