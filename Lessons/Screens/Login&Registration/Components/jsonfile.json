@@ -1,0 +1,19 @@
+{
+  "user": {
+    "nickname": "Alex123",
+    "email": "alex@example.com",
+    "password": "Pass123!",
+    "isRegistered": true,
+    "tasks": [
+      {
+        "title": "Купить молоко",
+        "isCompleted": false
+      },
+      {
+        "title": "Позвонить другу",
+        "isCompleted": true
+      }
+    ]
+  }
+}
+
