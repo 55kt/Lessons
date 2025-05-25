@@ -22,7 +22,7 @@ struct LoginView: View {
     // MARK: - Body
     var body: some View {
         ZStack(alignment: .bottom) {
-            customGradient(.pink, .blue)
+            customGradient(.blue, .pink, .topLeading, .bottomTrailing)
             
             ScrollView(.vertical, showsIndicators: false) {
                 /// TextFields Area

@@ -22,7 +22,7 @@ struct RegistrationView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                customGradient(.pink, .blue)
+                customGradient(.blue, .pink, .topLeading, .bottomTrailing)
                 
                 Image("waveIcon")
                     .resizable()

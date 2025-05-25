@@ -36,5 +36,5 @@ struct CustomButton: View {
 // MARK: - Preview
 #Preview {
     CustomButton(buttonName: "buttonName") {}
-        .background(customGradient(.blue, .purple))
+        .background()
 }
